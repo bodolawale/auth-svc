@@ -1,4 +1,21 @@
+import { Metadata } from 'grpc';
+import {
+  LoginResponse,
+  LoginPayload,
+} from './../../generated_proto/auth/auth_pb.d';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class AuthService {}
+export class AuthService {
+  async login(
+    data: LoginPayload.AsObject,
+    metadata: Metadata,
+  ): Promise<LoginResponse.AsObject> {
+    console.log(metadata.get('email')[0]);
+    return {
+      id: 1,
+      email: data.email,
+      password: data.password,
+    };
+  }
+}
