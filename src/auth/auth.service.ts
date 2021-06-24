@@ -11,7 +11,6 @@ export class AuthService {
     data: LoginPayload.AsObject,
     metadata: Metadata,
   ): Promise<LoginResponse.AsObject> {
-    console.log(metadata.get('email')[0]);
     return {
       id: 1,
       email: data.email,
