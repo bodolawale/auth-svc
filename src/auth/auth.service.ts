@@ -1,20 +1,26 @@
+import { IUserServiceClient } from './../../generated_proto/user/user.service_grpc_pb.d';
 import { Metadata } from 'grpc';
 import {
   LoginResponse,
   LoginPayload,
 } from './../../generated_proto/auth/auth_pb.d';
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
+import { ClientGrpc } from '@nestjs/microservices';
 
 @Injectable()
 export class AuthService {
+  private readonly userSvc;
+
+  constructor(@Inject('USER_SVC') private userClient: ClientGrpc) {
+    this.userSvc = userClient.getService('UserService');
+  }
+
   async login(
     data: LoginPayload.AsObject,
     metadata: Metadata,
   ): Promise<LoginResponse.AsObject> {
-    return {
-      id: 1,
-      email: data.email,
-      password: data.password,
-    };
+    const res = this.userSvc.createUser(data);
+    console.log(res);
+    return res;
   }
 }
