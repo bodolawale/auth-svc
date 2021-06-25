@@ -1,8 +1,10 @@
 import { AuthService } from './auth.service';
-import { LoginResponse } from './../../generated_proto/auth/auth_pb.d';
+import {
+  LoginResponse,
+  LoginPayload,
+} from './../../generated_proto/auth/auth.service_pb';
 import { Controller, Inject } from '@nestjs/common';
 import { GrpcMethod } from '@nestjs/microservices';
-import { LoginPayload } from 'generated_proto/auth/auth_pb';
 import { Metadata } from 'grpc';
 
 @Controller('auth')

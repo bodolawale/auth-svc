@@ -1,9 +1,8 @@
-import { IUserServiceClient } from './../../generated_proto/user/user.service_grpc_pb.d';
 import { Metadata } from 'grpc';
 import {
   LoginResponse,
   LoginPayload,
-} from './../../generated_proto/auth/auth_pb.d';
+} from './../../generated_proto/auth/auth.service_pb';
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 
@@ -19,8 +18,6 @@ export class AuthService {
     data: LoginPayload.AsObject,
     metadata: Metadata,
   ): Promise<LoginResponse.AsObject> {
-    const res = this.userSvc.createUser(data);
-    console.log(res);
-    return res;
+    return this.userSvc.createUser(data);
   }
 }
