@@ -1,8 +1,12 @@
+import {
+  IUserServiceServer,
+  IUserServiceClient,
+} from './../../generated_proto/user/user.service_grpc_pb.d';
 import { Metadata } from 'grpc';
 import {
   LoginResponse,
   LoginPayload,
-} from './../../generated_proto/auth/auth.service_pb';
+} from './../../generated_proto/auth/auth.service_pb.d';
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 

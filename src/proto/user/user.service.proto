@@ -5,6 +5,9 @@ package user;
 message CreateUserPayload {
   string email = 1;
   string password = 2;
+  string first_name = 3;
+  string last_name = 4;
+  string username = 5;
 }
 
 message GetOneUserPayload {
@@ -15,6 +18,13 @@ message User {
   int32 id = 1;
   string email = 2;
   string password = 3;
+  string first_name = 4;
+  string last_name = 5;
+  string username = 6;
+}
+
+message ListUser {
+  repeated User users = 1;
 }
 
 service UserService {
@@ -22,5 +32,5 @@ service UserService {
 
   rpc GetOneUser(GetOneUserPayload) returns (User);
   
-  rpc GetAllUsers(User) returns (stream User);
+  rpc GetAllUsers(User) returns (ListUser);
 }
